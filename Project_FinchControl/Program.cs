@@ -18,9 +18,7 @@ namespace Project_FinchControl
     // **************************************************
 
     class Program
-    {
-
-      
+    {             
         /// <summary>
         /// first method run when the app starts up
         /// </summary>
