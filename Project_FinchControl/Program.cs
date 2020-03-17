@@ -13,14 +13,12 @@ namespace Project_FinchControl
     // Application Type: Console
     // Author: Pearl, Natham
     // Dated Created: 1/21/2020
-    // Last Modified: 1/23/2020
+    // Last Modified: 3/15/2020
     //
     // **************************************************
 
     class Program
     {
-
-      
         /// <summary>
         /// first method run when the app starts up
         /// </summary>
@@ -33,8 +31,6 @@ namespace Project_FinchControl
             DisplayMenuScreen();
             DisplayClosingScreen();
         }
-
-       
 
         /// <summary>
         /// setup the console theme
@@ -58,14 +54,9 @@ namespace Project_FinchControl
             string menuChoice;
 
             Finch finchRobot = new Finch();
-
             do
             {
                 DisplayScreenHeader("Main Screen");
-
-                //
-                // get user menu choice
-                //
                 Console.WriteLine("\ta) Connect Finch Robot");
                 Console.WriteLine("\tb) Talent Show");
                 Console.WriteLine("\tc) Data Recorder");
@@ -76,9 +67,6 @@ namespace Project_FinchControl
                 Console.Write("\t\tEnter Choice:");
                 menuChoice = Console.ReadLine().ToLower();
 
-                //
-                // process user menu choice
-                //
                 switch (menuChoice)
                 {
                     case "a":
@@ -94,7 +82,7 @@ namespace Project_FinchControl
                         break;
 
                     case "d":
-
+                        DisplayLightAlarmMenuScreen(finchRobot);
                         break;
 
                     case "e":
@@ -120,10 +108,6 @@ namespace Project_FinchControl
             } while (!quitApplication);
         }
 
-
-
-
-
         #region TALENT SHOW
 
         /// <summary>
@@ -133,7 +117,7 @@ namespace Project_FinchControl
         /// </summary>
         /// 
 
-       
+
         static void DisplayTalentShowMenuScreen(Finch myFinch)
         {
             Console.CursorVisible = true;
@@ -193,7 +177,7 @@ namespace Project_FinchControl
 
 
 
-       
+
         /// <summary>
         /// *****************************************************************
         /// *               Talent Show > Light and Sound                   *
@@ -201,7 +185,7 @@ namespace Project_FinchControl
         /// </summary>
         /// <param name="finchRobot">finch robot object</param>
         static void DisplayLightAndSound(Finch finchRobot)
-                             {
+        {
             //
             // variables
             //
@@ -212,32 +196,32 @@ namespace Project_FinchControl
             string userResponse;
             Console.CursorVisible = false;
 
-                                 DisplayScreenHeader("Light and Sound");
+            DisplayScreenHeader("Light and Sound");
             Console.WriteLine("Pick values for colors");
             Console.WriteLine("Red 0-255 for the first number");
             userResponse = Console.ReadLine();
-            redColor=int.Parse(userResponse);
+            redColor = int.Parse(userResponse);
             Console.WriteLine("Pick a number value for Green 0-255");
             userResponse = Console.ReadLine();
-           greenColor= int.Parse(userResponse);
-          
+            greenColor = int.Parse(userResponse);
+
             Console.WriteLine("Pick a number value for Blue 0-255");
             userResponse = Console.ReadLine();
-           blueColor = int.Parse(userResponse);
+            blueColor = int.Parse(userResponse);
 
             Console.WriteLine("Pick a number between 1-255 for the beep volume");
             userResponse = Console.ReadLine();
-          soundLevel = int.Parse(userResponse);
+            soundLevel = int.Parse(userResponse);
 
 
 
             Console.WriteLine("\tThe Finch robot will not show off its glowing talent!");
-                                DisplayContinuePrompt();
+            DisplayContinuePrompt();
 
             for (int lightSoundLevel = 0; lightSoundLevel < 14; lightSoundLevel++)
             {
                 finchRobot.wait(1000);
-                finchRobot.setLED(redColor,0,0);
+                finchRobot.setLED(redColor, 0, 0);
                 finchRobot.noteOn(soundLevel);
                 finchRobot.wait(500);
                 finchRobot.setLED(0, greenColor, blueColor);
@@ -247,20 +231,20 @@ namespace Project_FinchControl
 
             }
 
-                                        DisplayMenuPrompt("Talent Show Menu");
-                             }
-                        
-        
+            DisplayMenuPrompt("Talent Show Menu");
+        }
 
-                     /// <summary>
-                     /// *****************************************************************
-                     /// *               Talent Show > Dance/ movement                   *
-                     /// *****************************************************************
-                     /// </summary>
-                     /// <param name="finchRobot">finch robot object</param>
 
-                        static void DisplayDance(Finch finchRobot)
-                    {
+
+        /// <summary>
+        /// *****************************************************************
+        /// *               Talent Show > Dance/ movement                   *
+        /// *****************************************************************
+        /// </summary>
+        /// <param name="finchRobot">finch robot object</param>
+
+        static void DisplayDance(Finch finchRobot)
+        {
             //
             // variables
             //
@@ -269,33 +253,33 @@ namespace Project_FinchControl
             string userResponse;
             Console.CursorVisible = false;
 
-                        DisplayScreenHeader("Dance");
+            DisplayScreenHeader("Dance");
 
             Console.WriteLine("Plese enter a number between 90-255 to see my skills");
             userResponse = Console.ReadLine();
-          wheelRotations = int.Parse(userResponse);
+            wheelRotations = int.Parse(userResponse);
 
             Console.WriteLine("How many times whould you like my talent to be shown.");
             Console.WriteLine("pick a vaule between 1-5");
-                userResponse = Console.ReadLine();
-           times = int.Parse(userResponse);
+            userResponse = Console.ReadLine();
+            times = int.Parse(userResponse);
 
 
             Console.WriteLine("\tThe Finch robot will not show off its glorious talents!");
-                        DisplayContinuePrompt();
+            DisplayContinuePrompt();
 
-                        for (int movementLevel = 0; movementLevel < times; movementLevel++)
-                        {
-                             finchRobot.wait( 200);
+            for (int movementLevel = 0; movementLevel < times; movementLevel++)
+            {
+                finchRobot.wait(200);
                 finchRobot.setMotors(90, 0);
                 finchRobot.wait(1000);
                 finchRobot.setMotors(wheelRotations, wheelRotations);
                 finchRobot.wait(1000);
-                finchRobot.setMotors(90,0);
+                finchRobot.setMotors(90, 0);
                 finchRobot.wait(1000);
                 finchRobot.setMotors(wheelRotations, wheelRotations);
                 finchRobot.wait(1000);
-                finchRobot.setMotors(90,0);
+                finchRobot.setMotors(90, 0);
                 finchRobot.wait(1000);
                 finchRobot.setMotors(wheelRotations, wheelRotations);
                 finchRobot.wait(1000);
@@ -306,28 +290,28 @@ namespace Project_FinchControl
                 finchRobot.setMotors(0, 0);
 
             }
-            
-                
-                DisplayMenuPrompt("Talent Show Menu");
-            }      
+
+
+            DisplayMenuPrompt("Talent Show Menu");
+        }
 
 
 
-                        /// <summary>
-                        /// *****************************************************************
-                        /// *               Talent Show > Mixing It Up                      *
-                        /// *****************************************************************
-                        /// </summary>
-                        /// <param name="finchRobot">finch robot object</param>
+        /// <summary>
+        /// *****************************************************************
+        /// *               Talent Show > Mixing It Up                      *
+        /// *****************************************************************
+        /// </summary>
+        /// <param name="finchRobot">finch robot object</param>
 
-                        static void DisplayMixingItUp(Finch finchRobot)
-                        {
-                            Console.CursorVisible = false;
+        static void DisplayMixingItUp(Finch finchRobot)
+        {
+            Console.CursorVisible = false;
 
             DisplayScreenHeader("Mix it Up");
 
-                            Console.WriteLine("\tThe Finch robot will not show off its glowing talent!");
-                            DisplayContinuePrompt();
+            Console.WriteLine("\tThe Finch robot will not show off its glowing talent!");
+            DisplayContinuePrompt();
 
             for (int lightSoundLevel = 0; lightSoundLevel < 3; lightSoundLevel++)
             {
@@ -335,40 +319,40 @@ namespace Project_FinchControl
                 finchRobot.noteOn(100);
                 finchRobot.wait(1000);
                 finchRobot.noteOn(130);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(100);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(160);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.setLED(255, 0, 0);
                 finchRobot.noteOn(140);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(100);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(100);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(130);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(100);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(175);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(160);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(100);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(110);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(210);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(190);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(160);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(140);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(130);
-            finchRobot.wait(500);
+                finchRobot.wait(500);
                 finchRobot.noteOn(210);
                 finchRobot.wait(250);
                 finchRobot.noteOn(210);
@@ -390,8 +374,8 @@ namespace Project_FinchControl
 
             }
 
-                            DisplayMenuPrompt("Talent Show Menu");
-                        }
+            DisplayMenuPrompt("Talent Show Menu");
+        }
 
 
         #endregion
@@ -415,6 +399,7 @@ namespace Project_FinchControl
             int numberOfDataPoints = 0;
             double dataPointFrequency = 0;
             double[] temperatures = null;
+            
 
             do
             {
@@ -435,13 +420,13 @@ namespace Project_FinchControl
                 // process user menu choice
                 //
                 switch (menuChoice)
-                { 
+                {
                     case "a":
                         numberOfDataPoints = DataRecorderDisplayNumberOfDataPoints();
                         break;
 
                     case "b":
-                        dataPointFrequency=DataRecorderDisplayGEtDataPointFrequency();
+                        dataPointFrequency = DataRecorderDisplayGEtDataPointFrequency();
                         break;
 
                     case "c":
@@ -451,7 +436,7 @@ namespace Project_FinchControl
                     case "d":
                         DataRecorderDisplayShowData(temperatures);
                         break;
-                        
+
                     case "q":
                         quitDataRecorderMenu = true;
                         break;
@@ -466,7 +451,11 @@ namespace Project_FinchControl
             } while (!quitDataRecorderMenu);
         }
 
-         static void DataRecorderDisplayShowData(double[] temperatures)
+        /// <summary>
+        /// Show off the dat the finch has gathered
+        /// </summary>
+        /// <param name="temperatures"></param>
+        static void DataRecorderDisplayShowData(double[] temperatures)
         {
             DisplayScreenHeader("show Data");
             // table headers
@@ -486,12 +475,16 @@ namespace Project_FinchControl
                   (index + 1).ToString().PadLeft(20) +
                    temperatures[index].ToString("n2").PadLeft(20)
                   );
-             
+
             }
 
             DisplayContinuePrompt();
         }
 
+        /// <summary>
+        /// use the values that the user has given the program as well as te finch to give the vales of temp and place them in a graph.
+        /// </summary>
+        /// <param name="temperatures"></param>
         static void DataRecorderDisplayTable(double[] temperatures)
         {
             // table headers
@@ -524,6 +517,7 @@ namespace Project_FinchControl
         {
 
             double[] temperatures = new double[numberOfDataPoints];
+             
 
             DisplayScreenHeader("Get Data");
 
@@ -533,50 +527,58 @@ namespace Project_FinchControl
             Console.WriteLine("I am ready to start recording you information. I mean temperatures.");
             Console.WriteLine("Yes that is my job to record temperatures.");
             DisplayContinuePrompt();
-
             for (int index = 0; index < numberOfDataPoints; index++)
             {
-                temperatures[index] = myfinch.getTemperature(); 
+                temperatures[index] = myfinch.getTemperature() * 9 / 5 + 32;
                 Console.WriteLine($"\tReading{index + 1}: {temperatures[index].ToString("n2")}");
-                int waitInSecounds = (int)(dataPointFrequency * 1000);  
+                int waitInSecounds = (int)(dataPointFrequency * 1000);
                 myfinch.wait(waitInSecounds);
             }
+
 
             Console.WriteLine();
             Console.WriteLine("\tTable of Temperatures");
             Console.WriteLine();
             DataRecorderDisplayTable(temperatures);
-            
+
             DisplayContinuePrompt();
 
             return temperatures;
         }
+       
+            
 
-  
-        
 
-
-        /// <summary>
-        /// get the frequency of data points from the user
-        /// </summary>
-        /// <returns>frequency of data points</returns>
-        static double DataRecorderDisplayGEtDataPointFrequency()
+    /// <summary>
+    /// get the frequency of data points from the user
+    /// </summary>
+    /// <returns>frequency of data points</returns>
+    static double DataRecorderDisplayGEtDataPointFrequency()
         {
             double dataPointFrequency;
-            
-            DisplayScreenHeader("Data point Frequency");
-            Console.WriteLine("Hi again what Frequency would you like this Project to be at.");
-            Console.WriteLine("Please enter a numerical Value Here:");
-            
+            bool validResponse;
+
+                DisplayScreenHeader("Data point Frequency");
+                Console.WriteLine("Hi again what Frequency would you like this Project to be at.");
+                Console.WriteLine("Please enter a numerical Value Here:");
+
 
             // validate user imput
-            double.TryParse(Console.ReadLine(), out dataPointFrequency);
-            Console.WriteLine($"Did you say {dataPointFrequency}. Yes or No");
-            Console.ReadLine();
-            
-            DisplayContinuePrompt();
+            do
+            {
+                validResponse = double.TryParse(Console.ReadLine(), out dataPointFrequency);
+                Console.WriteLine($"Did you say {dataPointFrequency}. Yes or No");
+                Console.ReadLine();
+                if (!validResponse)
+                {
+                    Console.WriteLine("Please Put in an interger:");
+                    DisplayContinuePrompt();
+                }
+            } while (validResponse);
+                
+                    DisplayContinuePrompt();
 
-            return dataPointFrequency;
+                    return dataPointFrequency; 
         }
 
         /// <summary>
@@ -587,28 +589,249 @@ namespace Project_FinchControl
         {
             int numberOfDataPoints;
             string userResponse;
-            DisplayScreenHeader("Number of Data Points");
-            Console.WriteLine("Hello How many data points would you like to use for this Project.");
-            userResponse = Console.ReadLine();
-           
-            // validate user imput
-            int.TryParse(userResponse, out numberOfDataPoints);
-            Console.WriteLine($"Total Number of Data Points: {numberOfDataPoints}");
+            bool validResponse;
+            do
+            {
+                DisplayScreenHeader("Number of Data Points");
+                Console.WriteLine("Hello How many data points would you like to use for this Project.");
+                userResponse = Console.ReadLine();
+
+                // validate user imput
+                validResponse = int.TryParse(userResponse, out numberOfDataPoints);
+                Console.WriteLine($"Total Number of Data Points: {numberOfDataPoints}");
+                if (!validResponse)
+                {
+                    Console.WriteLine("Please Put in an interger:");
+                    DisplayContinuePrompt();
+                }
+            } while (validResponse);
 
             DisplayContinuePrompt();
 
             return numberOfDataPoints;
         }
-        
-      
 
         
+
+        #endregion
+
+       #region Alarm System
+
+        static void DisplayLightAlarmMenuScreen(Finch finchRobot)
+        {
+            Console.CursorVisible = true;
+
+            string sensorToMonitor = "";
+            string rangeType = "";
+            int TimeToMonitor = 0;
+            int maxMinThresholdValues = 0;
+
+            bool quitAlarmSystemMenu = false;
+            string menuChoice;
+            do
+            {
+                DisplayScreenHeader("Alarm System Menu");
+
+                //
+                // get user menu choice
+                //
+                Console.WriteLine("\ta) Set Sensors to Monitor");
+                Console.WriteLine("\tb) Set Range Type");
+                Console.WriteLine("\tc) Set Max/Min Threshold Value");
+                Console.WriteLine("\td) Set Time to Monitor");
+                Console.WriteLine("\te) Set Alarm");
+                Console.WriteLine("\tq) Main Menu");
+                Console.Write("\t\tEnter Choice:");
+                menuChoice = Console.ReadLine().ToLower();
+
+                //
+                // process user menu choice
+                //
+                switch (menuChoice)
+                {
+                    case "a":
+                        sensorToMonitor = LihgtAlarmDisplaySetSensorToMonitor();
+                        break;
+
+                    case "b":
+                        rangeType = LightAlarmDisplaySetRangeType();
+                        break;
+
+                    case "c":
+                        maxMinThresholdValues = LightAlarmDisplaySetMaxMinThresholdValues(rangeType, finchRobot);
+                        break;
+
+                    case "d":
+                        TimeToMonitor = LightAlarmDisplaySetTimeToMonitor();
+                        break;
+                    case "e":
+                        LightAlarmSetAlarm(finchRobot, sensorToMonitor, rangeType, maxMinThresholdValues, TimeToMonitor);
+                        break;
+
+                    case "q":
+                        quitAlarmSystemMenu = true;
+                        break;
+
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("\tPlease enter a letter for the menu choice.");
+                        DisplayContinuePrompt();
+                        break;
+                }
+
+            } while (!quitAlarmSystemMenu);
+        }
+
+         static void LightAlarmSetAlarm(Finch finchRobot, string sensorToMonitor, string rangeType, int maxMinThresholdValues, int timeToMonitor)
+        {
+            int secoundsElapsed = 0;
+            bool thresholdExceed = false;
+            int currentLightSensorValue = 0;
+            DisplayScreenHeader("Set Alarm");
+            Console.WriteLine($"Sensors to Monitor: {sensorToMonitor}");
+            Console.WriteLine($"Range Type: {rangeType}");
+            Console.WriteLine($"Max/min threshold values: {maxMinThresholdValues}");
+            Console.WriteLine($"Time to Monitor: {timeToMonitor}");
+            Console.WriteLine();
+            Console.WriteLine("Press any key to start this program you have helped make:");
+            Console.ReadKey();
+            Console.WriteLine();
+            
+            
+            while ((secoundsElapsed < timeToMonitor) && !thresholdExceed)
+            {
+
+                switch (sensorToMonitor.ToLower())
+                {
+                    case "left":
+                        currentLightSensorValue = finchRobot.getLeftLightSensor();
+                        break;
+                    case "right":
+                        currentLightSensorValue = finchRobot.getRightLightSensor();
+                        break;
+                    case "both":
+                        currentLightSensorValue = (finchRobot.getLeftLightSensor() + finchRobot.getRightLightSensor()) / 2;
+                        break;
+                }
+
+
+                switch (rangeType)
+                {
+                    case "minimum":
+                        if (currentLightSensorValue < maxMinThresholdValues)
+                        {
+                            thresholdExceed = true;
+                        }
+                        break;
+
+                    case "maximum":
+                        if (currentLightSensorValue > maxMinThresholdValues)
+                        {
+                            thresholdExceed = false;
+                        }
+                        break;
+                }
+                finchRobot.wait(1000);
+                secoundsElapsed++;
+
+                if (thresholdExceed)
+                {
+                    Console.WriteLine($"The {rangeType} threshold value of {maxMinThresholdValues} was exceeded by the light sensor value of {currentLightSensorValue}.");
+
+                }
+                else
+                {
+                    Console.WriteLine($"The {rangeType} threshold value of {maxMinThresholdValues} is in exceptiable with in the paramiters of the {currentLightSensorValue}.");
+
+                }
+            }
+
+            DisplayMenuPrompt("Light Alarm");
+        }
+
+        static int LightAlarmDisplaySetTimeToMonitor()
+        {
+            int timeToMonitor;
+            bool validResponse;
+
+            DisplayScreenHeader("Time To Monitor");
+            Console.WriteLine($"\tTime to Monitor:");
+              
+            validResponse = int.TryParse(Console.ReadLine(), out timeToMonitor);
+                Console.WriteLine($"The value you selected is {timeToMonitor}");
+          
+
+            DisplayMenuPrompt("Light Alarm");
+            return timeToMonitor;
+        }
+
+        static int LightAlarmDisplaySetMaxMinThresholdValues(string rangeType, Finch finchRobot)
+        {
+            int maxMinThresholdValues;
+            bool validResponse;
+            
+            
+                DisplayScreenHeader("Max/Min Threshold Values");
+
+                Console.WriteLine($"Left Light Sensor: {finchRobot.getLeftLightSensor()}");
+                Console.WriteLine($"Current Right Light Sensor: {finchRobot.getRightLightSensor()}");
+                Console.WriteLine();
+
+                Console.Write($"Enter the {rangeType} Light Sensor Value: ");
+            Console.WriteLine();
+
+                validResponse = int.TryParse(Console.ReadLine(), out maxMinThresholdValues);
+                Console.WriteLine($"The value you selected is {maxMinThresholdValues}");
+
+                if (!validResponse)
+                {
+                    Console.WriteLine("Please Put in an interger:");
+                    DisplayContinuePrompt();
+                }
+          
+
+            DisplayMenuPrompt("Light Alarm");
+            return maxMinThresholdValues;
+        }
+
+        
+        static string LightAlarmDisplaySetRangeType()
+        {
+            string rangeType;
+                  
+           
+            DisplayScreenHeader("Range Types");
+            Console.WriteLine("PLease pick one of the following Range Types Minimum or Maximum.");
+            Console.WriteLine("Range Type:");
+            rangeType = Console.ReadLine();
+           
+            Console.WriteLine();
+            Console.WriteLine($"Is {rangeType} the correct one:");
+            Console.ReadLine();
+
+            DisplayMenuPrompt("Light Alarm");
+            return rangeType;
+        }
+
+       
+        static string LihgtAlarmDisplaySetSensorToMonitor()
+        {
+            string sensorsToMonitor;
+
+            DisplayScreenHeader("Sensors to Monitor");
+
+            Console.WriteLine("\tSensors to Monitor for the Left Right or Both:");
+            sensorsToMonitor = Console.ReadLine();
+            Console.WriteLine($"You have selected {sensorsToMonitor}");
+
+            DisplayMenuPrompt("Light Alarm");
+
+            return sensorsToMonitor;
+
+        }
 
        
 
-        
-
-      
 
 
         #endregion
